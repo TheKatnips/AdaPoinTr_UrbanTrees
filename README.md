@@ -27,6 +27,15 @@ It includes:
 
 ---
 
+## References
+
+This work builds upon the following studies and codebases:  
+- [PoinTr](https://github.com/yuxumin/PoinTr)  
+- [TreePoinTr](https://github.com/alBrnd/treePoinTr)
+
+
+---
+
 ## Architecture Overview
 
 ![Architecture](adapointr.png)
@@ -51,6 +60,17 @@ It includes:
     <p style="text-align: center;">AdaPoinTr Completion (SfM-MVS)</p>
   </div>
 </div>
+
+---
+
+## Analysis
+AdaPoinTr reconstructs **trunks and main branches well**. However, **fine branches at the extremities are often missing**, likely due to the subdivision of trees into multiple chunks for inference.
+
+Simpler species (e.g., European ash / Fraxinus excelsior) generally yield better results.
+
+**Future work** could explore full-tree processing to improve structural coherence and better capture fine branches at the extremities.
+
+> **Note:** Quantitative metrics such as Chamfer Distance, M3C2, and AdQSM (branch order and length) are not shown here, but were used to evaluate performance.
 
 ---
 
