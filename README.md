@@ -57,14 +57,25 @@ This work builds upon the following studies and codebases:
   </div>
   <div>
     <img src="gifs/Colmap_FE_01_completion.gif" width="400"/>
-    <p style="text-align: center;">AdaPoinTr Completion (SfM-MVS)</p>
+    <p style="text-align: center;">AdaPoinTr Completion of SfM-MVS</p>
+  </div>
+</div>
+
+<div style="display: flex; align-items: flex-start; gap: 10px;">
+  <div>
+    <img src="gifs/GS_FE_01.gif" width="400"/>
+    <p style="text-align: center;">3D Gaussian Splatting (3DGS)</p>
+  </div>
+  <div>
+    <img src="gifs/GS_FE_01_completion.gif" width="400"/>
+    <p style="text-align: center;">AdaPoinTr Completion of 3DGS</p>
   </div>
 </div>
 
 ---
 
 ## Analysis
-AdaPoinTr reconstructs **trunks and main branches well**. However, **fine branches at the extremities are often missing**, likely due to the subdivision of trees into multiple chunks for inference.
+AdaPoinTr successfully reconstructs the trunks and main branches. However, fine branches at the extremities are often missing. This is because the tree is subdivided into smaller sub-point clouds during processing, and any sub-point cloud that does not contain enough points (less than 2048 in the partial input) is ignored, leading to missing details at the branch extremities.
 
 Simpler species (e.g., European ash / Fraxinus excelsior) generally yield better results.
 
