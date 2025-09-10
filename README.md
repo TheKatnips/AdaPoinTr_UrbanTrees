@@ -1,29 +1,24 @@
 # AdaPoinTr_UrbanTrees
 
-Additional visuals illustrating urban tree point cloud reconstruction with **AdaPoinTr**.
+Complementary visuals for the poster:
 
-*This work was conducted as part of a Master 2 internship (TELENVI: Remote Sensing and Environment).*
+**"Enhancing 3D point clouds of urban trees using deep learning"**
+
+*AI4EO Symposium 2025.*
+
+*Work conducted as part of a Master 2 internship (Master TELENVI (Rennes 2 University): Remote Sensing and Environment).*
 
 ---
 
 ## Visual Companion
 
-This repository provides **complementary visuals** for our study on 3D point cloud completion and denoising of urban trees using **AdaPoinTr**, a transformer-based deep learning model.  
+This repository provides **complementary visuals** for our study.
 It includes:
 - A **diagram** of the model architecture  
-- **3D GIFs** comparing:
-  - TLS (LiDAR)  
-  - SfM-MVS photogrammetry (noisy and incomplete)  
-  - **AdaPoinTr completion of SfM-MVS clouds**
-
----
-
-## About this Study
-
-- **Data Acquisition:** Winter 2025 in Rennes, France (~60 urban trees, 6 species)
-- **Goal:** Improve urban tree point clouds from smartphone photogrammetry to approach TLS standards (completion + denoising)
-- **Methods:** AdaPoinTr completion model with two-stage fine-tuning (synthetic + TLS data)  
-- **Evaluation:** Chamfer Distance, M3C2 metrics and metrics from AdQSM
+- **3D GIFs** comparing tree point clouds:
+  - TLS (terrestrial Laser Scanning)  
+  - SfM-MVS photogrammetry (Colmap software) → with AdaPoinTr completion/denoising  
+  - 3D Gaussian Splatting (3DGS) → with AdaPoinTr completion/denoising
 
 ---
 
@@ -32,7 +27,6 @@ It includes:
 This work builds upon the following studies and codebases:  
 - [PoinTr](https://github.com/yuxumin/PoinTr)  
 - [TreePoinTr](https://github.com/alBrnd/treePoinTr)
-
 
 ---
 
@@ -44,7 +38,7 @@ This work builds upon the following studies and codebases:
 
 ## Visual Results
 
-### Example (Fraxinus excelsior): TLS vs SfM-MVS vs AdaPoinTr Completion
+### Example (Fraxinus excelsior):
 
 <div style="display: flex; align-items: flex-start; gap: 10px;">
   <div>
@@ -74,20 +68,27 @@ This work builds upon the following studies and codebases:
 
 ---
 
-## Analysis
-AdaPoinTr successfully reconstructs the trunks and main branches. However, fine branches at the extremities are often missing. This is because the tree is subdivided into smaller sub-point clouds during processing, and any sub-point cloud that does not contain enough points (less than 2048 in the partial input) is ignored, leading to missing details at the branch extremities.
+## Key Finding
 
-Simpler species (e.g., European ash / Fraxinus excelsior) generally yield better results.
+- **AdaPoinTr can potentially improve 3D tree models obtained from smartphone photos.** Fine branches at the edges of the tree are often missing when the input point cloud is sparse (<2,048 points per 1 m³ cube), but the overall structure of trunks and main branches is well reconstructed.
 
-**Future work** could explore full-tree processing to improve structural coherence and better capture fine branches at the extremities.
+> **Note:** Evaluation metrics (Chamfer Distance, F-score, M3C2, AdQSM) were computed but are not displayed here.
 
-> **Note:** Quantitative metrics such as Chamfer Distance, M3C2, and AdQSM (branch order and length) are not shown here, but were used to evaluate performance.
+## Potential Improvements
+
+- **Fine-tune AdaPoinTr on larger datasets with realistic occlusions**, similar to smartphone photogrammetry (SfM-MVS).  
+- **Process entire trees without dividing into sub-clouds**, to better preserve fine branches and structural coherence.
+
+> AdaPoinTr shows promise for generating accurate 3D tree models from low-cost data, offering a step toward accessible urban tree monitoring.
 
 ---
 
-## About the Author
+## Authors & Affiliations
 
-**Main Author:** Lola Bricout (CNRS - LETG Laboratory, Rennes, France)
+- **L. Bricout¹, P.M. Houngan¹, A. Padonou¹², S. El Moualy², L. Hubert-Moy¹, T. Corpetti¹, J. Nabucet¹**
+
+¹ LETG Rennes, Université Rennes 2 / CNRS, UMR 6554, Rennes, France  
+² SCOP Aubépine, Rennes, France
 
 **Contact:** lola.bricout@univ-rennes2.fr  
 
